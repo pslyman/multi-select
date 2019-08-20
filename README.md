@@ -1,1 +1,1 @@
-# mutli-select
+# multi-select
