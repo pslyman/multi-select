@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MultiSelectSettings } from './multi-select-settings';
+import { MultiSelectOption } from './multi-select-option';
 
 @Component({
   selector: 'app-multi-select',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./multi-select.component.css']
 })
 export class MultiSelectComponent implements OnInit {
+  @Input()
+  settings: MultiSelectSettings = {};
 
-  constructor() { }
+  @Input()
+  options: MultiSelectOption[] = [];
 
-  ngOnInit() {
-  }
+  @Output()
+  selectionChange = new EventEmitter<MultiSelectOption[]>();
 
+  constructor() {}
+
+  ngOnInit() {}
 }
