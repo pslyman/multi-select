@@ -5,8 +5,6 @@
     <input placeholder="Search">
   </form>
   <ul>
-    <li>Iterate options here</li>
-    <li>Option2</li>
-    <li>Option3</li>
+    <li *ngFor="let option of options">{{option.label}}</li>
   </ul>
  </div>
