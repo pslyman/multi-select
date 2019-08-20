@@ -1,0 +1,8 @@
+.multi-select-button {
+    background-color: white;
+    color: black;
+    padding: 7px 50px 7px 10px;
+    text-align: left;
+    min-width: 170px;
+    border: 2px solid lightgray;
+}
