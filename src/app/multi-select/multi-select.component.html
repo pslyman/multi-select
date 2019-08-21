@@ -2,11 +2,13 @@
   <ng-content></ng-content>
 </span>
 <div class="option-container" *ngIf="showOptions" #optionContainer>
-  <form>
+  <form *ngIf="showSearch">
     <input class="form-control" placeholder="Search">
   </form>
+
     <label class="container select-all"><input type="checkbox" value="selectAll" (click)="selectAll()"><span>Select All</span><span class="checkmark"></span></label>
     
-    <label *ngFor="let option of options" class="container">
+    <label *ngFor="let option of options" class="container" click="updateSelection(option)">
       <input type="checkbox" value="option.id"><span>{{option.label}}</span><span class="checkmark"></span></label>
+
 </div>

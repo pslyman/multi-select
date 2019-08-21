@@ -4,7 +4,8 @@
       Welcome to {{ title }}!
     </h1>
   </div>
-  <app-multi-select [options]="sampleOptions">
-    <button class="btn btn-primary">Button</button>
+  <app-multi-select [options]="sampleOptions" [settings]="sampleSettings" (selectionChange)="sampleSingleSelect($event)"
+    class="default">
+    <button class="btn btn-primary dropdown-toggle">{{samplePrompt}}</button>
   </app-multi-select>
 </div>

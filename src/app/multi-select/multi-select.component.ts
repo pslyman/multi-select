@@ -1,13 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MultiSelectSettings } from './multi-select-settings';
 import { MultiSelectOption } from './multi-select-option';
 
 @Component({
   selector: 'app-multi-select',
   templateUrl: './multi-select.component.html',
-  styleUrls: ['./multi-select.component.css']
+  styleUrls: ['./multi-select.component.scss']
 })
-export class MultiSelectComponent implements OnInit, AfterViewInit {
+export class MultiSelectComponent implements OnInit {
   @Input()
   settings: MultiSelectSettings = {};
 
@@ -20,6 +20,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
   @ViewChild('optionContainer') optionContainer: ElementRef;
 
   showOptions = false;
+  showSearch = false;
 
   constructor() {}
 
@@ -35,11 +36,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.optionContainer);
-  }
-
-  ngAfterViewInit() {
-    console.log(this.optionContainer);
+    this.showSearch = this.settings && this.settings.showSearch === true;
   }
 
   contentClick() {
@@ -47,6 +44,17 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
   }
 
   selectAll() {
-    console.log(this.options)
+    console.log(this.options) 
+
+  }
+    
+  updateSelection(option: MultiSelectOption) {
+    // need multi-select logic here
+
+    // this is the single select logic
+    this.selectionChange.emit([option]);
+    if (this.settings && this.settings.closeOnSelect === true) {
+      this.showOptions = false;
+    }
   }
 }
