@@ -21,6 +21,9 @@ export class MultiSelectComponent implements OnInit {
 
   showOptions = false;
   showSearch = false;
+  selectedItems = [];
+  selectedItemsString = '';
+  inputName = 'select';
 
   constructor() {}
 
@@ -47,6 +50,30 @@ export class MultiSelectComponent implements OnInit {
     console.log(this.options) 
 
   }
+
+  isSelected(s:any) {
+    return this.selectedItems.findIndex((item) => item.id === s.id) > -1 ? true : false;
+   }
+
+  selectSuggestion(s) {
+    this.selectedItems.find((item) => item.id === s.id) ? 
+    this.selectedItems = this.selectedItems.filter((item) => item.id !== s.id) :
+    this.selectedItems.push(s);
+
+    // this.assignToNgModel();
+  }
+
+  assignToNgModel() {
+    this.selectedItemsString = '';
+    this.selectedItems.map((item) => this.selectedItemsString += item.label + ' ');
+  }
+
+  deleteSelects(s) {
+    this.selectedItems = this.selectedItems.filter((item) => item.id !== s.id);
+    // this.assignToNgModel();
+  }
+
+
     
   updateSelection(option: MultiSelectOption) {
     // need multi-select logic here
