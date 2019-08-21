@@ -5,7 +5,8 @@
   <form>
     <input class="form-control" placeholder="Search">
   </form>
-  <ul>
-    <li *ngFor="let option of options">{{option.label}}</li>
-  </ul>
+    <label class="container select-all"><input type="checkbox" value="selectAll" (click)="selectAll()"><span>Select All</span><span class="checkmark"></span></label>
+    
+    <label *ngFor="let option of options" class="container">
+      <input type="checkbox" value="option.id"><span>{{option.label}}</span><span class="checkmark"></span></label>
 </div>

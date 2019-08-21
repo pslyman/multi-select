@@ -45,4 +45,8 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
   contentClick() {
     this.showOptions = !this.showOptions;
   }
+
+  selectAll() {
+    console.log(this.options)
+  }
 }
