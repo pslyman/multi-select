@@ -5,7 +5,7 @@ import { MultiSelectOption } from './multi-select-option';
 @Component({
   selector: 'app-multi-select',
   templateUrl: './multi-select.component.html',
-  styleUrls: ['./multi-select.component.css']
+  styleUrls: ['./multi-select.component.scss']
 })
 export class MultiSelectComponent implements OnInit {
   @Input()
