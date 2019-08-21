@@ -25,19 +25,13 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
 
   @HostListener('document:click', ['$event', 'optionContainer'])
   onClick(event: MouseEvent, container) {
-    console.log(container);
-    const clickElement = event.target as HTMLElement;
-    if (!this.optionContainer) {
-      this.showOptions = false;
-      return;
+    if (container) {
+      const containerElement = container.nativeElement as HTMLElement;
+      const clickElement = event.target as HTMLElement;
+      if (clickElement.contains(containerElement)) {
+        this.showOptions = false;
+      }
     }
-    // console.log(this.optionContainer);
-    // const optionNode = this.optionContainer.nativeElement as HTMLElement;
-    // const childClicked = clickElement.contains(optionNode);
-    // console.log(childClicked);
-    // if (!childClicked) {
-    //   this.showOptions = false;
-    // }
   }
 
   ngOnInit() {
