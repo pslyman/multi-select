@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MultiSelectSettings } from './multi-select-settings';
 import { MultiSelectOption } from './multi-select-option';
+import { debounceTime } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-multi-select',
@@ -17,7 +19,12 @@ export class MultiSelectComponent implements OnInit {
   @Output()
   selectionChange = new EventEmitter<MultiSelectOption[]>();
 
+  @Output()
+  searchChange = new EventEmitter<string>();
+
   @ViewChild('optionContainer') optionContainer: ElementRef;
+
+  searchControl: FormControl = new FormControl();
 
   showOptions = false;
   showSearch = false;
@@ -36,7 +43,12 @@ export class MultiSelectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchControl.setValue('');
     this.showSearch = this.settings && this.settings.showSearch === true;
+    const debounceNumber = this.settings && this.settings.searchDelay ? this.settings.searchDelay : 0;
+    this.searchControl.valueChanges.pipe(debounceTime(debounceNumber)).subscribe(value => {
+      this.searchChange.emit(value);
+    });
   }
 
   contentClick() {
@@ -51,5 +63,9 @@ export class MultiSelectComponent implements OnInit {
     if (this.settings && this.settings.closeOnSelect === true) {
       this.showOptions = false;
     }
+  }
+
+  clearSearch() {
+    this.searchControl.setValue('');
   }
 }

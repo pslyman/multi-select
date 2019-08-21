@@ -3,7 +3,9 @@
 </span>
 <div class="option-container" *ngIf="showOptions" #optionContainer>
   <form *ngIf="showSearch">
-    <input class="form-control" placeholder="Search">
+    <span class="fa fa-times" *ngIf="searchControl.value !== ''" (click)="clearSearch()"></span>
+    <span class="fa fa-search" *ngIf="searchControl.value === ''"></span>
+    <input class="form-control" placeholder="Search" [formControl]="searchControl">
   </form>
   <ul>
     <li *ngFor="let option of options" (click)="updateSelection(option)">{{option.label}}</li>

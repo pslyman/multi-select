@@ -13,6 +13,33 @@ ul {
     border-radius: 0.25rem;
     margin-top: 0.25rem;
   }
+  form {
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    input {
+      margin: 0.25rem;
+      height: 2rem;
+      width: auto;
+      padding-right: 2rem;
+    }
+    .fa {
+      position: absolute;
+      right: 0.25rem;
+      top: 0;
+      height: 2rem;
+      line-height: 2rem;
+      width: 2rem;
+      text-align: center;
+    }
+    .fa-search {
+      color: #ccc;
+      pointer-events: none;
+    }
+    .fa-times {
+      color: red;
+      cursor: pointer;
+    }
+  }
   li {
     padding: 0 1rem;
     line-height: 2rem;
