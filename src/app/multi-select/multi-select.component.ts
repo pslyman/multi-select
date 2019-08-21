@@ -30,8 +30,12 @@ export class MultiSelectComponent implements OnInit {
   showSearch = false;
   selectedItems: MultiSelectOption[] = [];
   selectedItemsString: string = '';
-  inputName = 'Select from options';
+
+  /* will be imported in */
+  inputNameDefault = "Search"
+  inputName = '';
   selectAllToggle = false;
+  overflow = false;
 
   constructor() {}
 
@@ -47,6 +51,7 @@ export class MultiSelectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.inputName = this.inputNameDefault;
     this.searchControl.setValue('');
     this.showSearch = this.settings && this.settings.showSearch === true;
 
@@ -72,6 +77,9 @@ export class MultiSelectComponent implements OnInit {
     if (!this.selectAllToggle) {
       this.selectedItems = this.options;
     }
+
+    this.chipEmpty(); 
+    this.chipOverflow()
   }
 
   isSelected(option:any) {
@@ -83,17 +91,21 @@ export class MultiSelectComponent implements OnInit {
     this.selectedItems = this.selectedItems.filter((item) => item.id !== option.id) :
     this.selectedItems.push(option);
     console.log(this.selectedItems);
-    this.clearNgModel(); 
+    this.chipEmpty(); 
+    this.chipOverflow()
   }
 
-  clearNgModel() {
-    this.inputName = '';
-
-  }
 
   deleteSelects(option) {
     this.selectedItems = this.selectedItems.filter((item) => item.id !== option.id);
-    this.clearNgModel();
+
+    
+
+    if (this.selectedItems.length > 1) {
+      this.inputName = this.inputNameDefault;
+    }
+    this.chipEmpty();
+    this.chipOverflow()
   }
     
   updateSelection(option: MultiSelectOption) {
@@ -107,6 +119,27 @@ export class MultiSelectComponent implements OnInit {
   }
 
   clearSearch() {
+    
     this.searchControl.setValue('');
+
+  }
+
+  chipEmpty() {
+    if (this.selectedItems.length === 0) {  
+      this.inputName = this.inputNameDefault;
+    } 
+    if (this.selectedItems.length !== 0) {
+        this.inputName = '';
+      }
+  }
+
+  chipOverflow() {
+    if (this.selectedItems.length > 4) {
+      this.overflow = true;
+    }
+    if (this.selectedItems.length < 5) {
+      this.overflow = false;
+    }
+    /* Todo: cover this *ngIf emelement tied to this in a chip cover */
   }
 }
