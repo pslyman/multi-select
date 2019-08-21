@@ -7,6 +7,8 @@ import { MultiSelectOption } from './multi-select/multi-select-option';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  samplePrompt = 'My Cars';
+  sampleSingleOption: MultiSelectOption;
   title = 'multi-select';
   sampleOptions: MultiSelectOption[] = [
     { id: '1', label: 'Ford Galaxy' },
@@ -21,4 +23,14 @@ export class AppComponent {
     { id: '10', label: 'Fiat X19' },
     { id: '11', label: 'BMW 2002' }
   ];
+  sampleSettings = {
+    closeOnSelect: true
+  };
+
+  constructor() {}
+
+  sampleSingleSelect(options: MultiSelectOption[]) {
+    this.samplePrompt = options[0].label;
+    this.sampleSingleOption = options[0];
+  }
 }

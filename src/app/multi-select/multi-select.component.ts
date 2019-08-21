@@ -42,4 +42,14 @@ export class MultiSelectComponent implements OnInit {
   contentClick() {
     this.showOptions = !this.showOptions;
   }
+
+  updateSelection(option: MultiSelectOption) {
+    // need multi-select logic here
+
+    // this is the single select logic
+    this.selectionChange.emit([option]);
+    if (this.settings && this.settings.closeOnSelect === true) {
+      this.showOptions = false;
+    }
+  }
 }
