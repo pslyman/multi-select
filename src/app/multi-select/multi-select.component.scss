@@ -99,11 +99,11 @@ ul {
   border: none;
 }
 
-.container input:checked ~ .checkmark:after {
+.container input:checked ~ .check-all:after {
   display: block;
 }
 
-.container input:checked ~ .checkmark {
+.container input:checked ~ .check-all {
   background-color: #007bff;
   border: none;
 }

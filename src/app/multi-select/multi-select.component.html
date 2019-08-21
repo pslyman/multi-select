@@ -12,21 +12,20 @@
       <span (click)="deleteSelects(item)" class="delete-icon-chip">&#10006;</span>
     </div>
 
-    <input name="suggestion" type="text" placeholder="Select {{inputName}}" (click)="contentClick()" [(ngModel)]="selectedItemsString">
+    <input name="option" type="text" placeholder={{inputName}} (click)="contentClick()" [(ngModel)]="selectedItemsString">
     </div>
 
 </div>
-
 
 <div class="option-container" *ngIf="showOptions" #optionContainer>
   <form *ngIf="showSearch">
     <input class="form-control" placeholder="Search">
   </form>
 
-    <label *ngIf="options.length > 1;" class="container select-all"><input type="checkbox" (click)="selectAll()"><span>Select All</span><span class="checkmark"></span></label>
+    <label *ngIf="options.length > 1;" class="container select-all"><input type="checkbox" [checked]="selectAllToggle" (click)="selectAll()"><span>Select All</span><span class="checkmark check-all"></span></label>
     <label *ngIf="!options.length" class="container-empty"><span>No Items</span></label>
 
-    <label *ngFor="let s of options" class="container" click="updateSelection(option)">
-      <input type="checkbox" [ngClass]="isSelected(s) ? 'checked-with-mark' : ''" (click)="selectSuggestion(s)"><span>{{s.label}}</span><span [ngClass]="isSelected(s) ? 'checked' : ''" class="checkmark"></span></label>
+    <label *ngFor="let option of options" class="container" click="updateSelection(option)">
+      <input type="checkbox" [ngClass]="isSelected(option) ? 'checked-with-mark' : ''" (click)="selectOption(option)"><span>{{option.label}}</span><span [ngClass]="isSelected(option) ? 'checked' : ''" class="checkmark"></span></label>
 
 </div>

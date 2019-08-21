@@ -23,7 +23,8 @@ export class MultiSelectComponent implements OnInit {
   showSearch = false;
   selectedItems = [];
   selectedItemsString = '';
-  inputName = 'select';
+  inputName = 'Select from options';
+  selectAllToggle = false;
 
   constructor() {}
 
@@ -40,40 +41,48 @@ export class MultiSelectComponent implements OnInit {
 
   ngOnInit() {
     this.showSearch = this.settings && this.settings.showSearch === true;
+
+    if (this.selectedItems.length === this.options.length ) {
+      this.selectAllToggle = true; 
+    }
   }
 
   contentClick() {
     this.showOptions = !this.showOptions;
+
   }
 
   selectAll() {
-    console.log(this.options) 
 
+    if (this.selectedItems.length == this.options.length) {
+      this.selectedItems = [];
+    } 
+    if (!this.selectAllToggle) {
+      this.selectedItems = this.options;
+    }
   }
 
-  isSelected(s:any) {
-    return this.selectedItems.findIndex((item) => item.id === s.id) > -1 ? true : false;
+  isSelected(option:any) {
+    return this.selectedItems.findIndex((item) => item.id === option.id) > -1 ? true : false;
    }
 
-  selectSuggestion(s) {
-    this.selectedItems.find((item) => item.id === s.id) ? 
-    this.selectedItems = this.selectedItems.filter((item) => item.id !== s.id) :
-    this.selectedItems.push(s);
-
-    // this.assignToNgModel();
+  selectOption(option) {
+    this.selectedItems.find((item) => item.id === option.id) ? 
+    this.selectedItems = this.selectedItems.filter((item) => item.id !== option.id) :
+    this.selectedItems.push(option);
+    console.log(this.selectedItems);
+    this.clearNgModel(); 
   }
 
-  assignToNgModel() {
-    this.selectedItemsString = '';
-    this.selectedItems.map((item) => this.selectedItemsString += item.label + ' ');
+  clearNgModel() {
+    this.inputName = '';
+
   }
 
-  deleteSelects(s) {
-    this.selectedItems = this.selectedItems.filter((item) => item.id !== s.id);
-    // this.assignToNgModel();
+  deleteSelects(option) {
+    this.selectedItems = this.selectedItems.filter((item) => item.id !== option.id);
+    this.clearNgModel();
   }
-
-
     
   updateSelection(option: MultiSelectOption) {
     // need multi-select logic here
