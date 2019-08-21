@@ -55,6 +55,11 @@ export class MultiSelectComponent implements OnInit {
     this.showOptions = !this.showOptions;
   }
 
+  selectAll() {
+    console.log(this.options) 
+
+  }
+    
   updateSelection(option: MultiSelectOption) {
     // need multi-select logic here
 
