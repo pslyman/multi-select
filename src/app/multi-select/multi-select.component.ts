@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { MultiSelectSettings } from './multi-select-settings';
 import { MultiSelectOption } from './multi-select-option';
 
@@ -7,7 +7,7 @@ import { MultiSelectOption } from './multi-select-option';
   templateUrl: './multi-select.component.html',
   styleUrls: ['./multi-select.component.css']
 })
-export class MultiSelectComponent implements OnInit, AfterViewInit {
+export class MultiSelectComponent implements OnInit {
   @Input()
   settings: MultiSelectSettings = {};
 
@@ -20,6 +20,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
   @ViewChild('optionContainer') optionContainer: ElementRef;
 
   showOptions = false;
+  showSearch = false;
 
   constructor() {}
 
@@ -35,11 +36,7 @@ export class MultiSelectComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.optionContainer);
-  }
-
-  ngAfterViewInit() {
-    console.log(this.optionContainer);
+    this.showSearch = this.settings && this.settings.showSearch === true;
   }
 
   contentClick() {

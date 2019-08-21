@@ -2,7 +2,7 @@
   <ng-content></ng-content>
 </span>
 <div class="option-container" *ngIf="showOptions" #optionContainer>
-  <form>
+  <form *ngIf="showSearch">
     <input class="form-control" placeholder="Search">
   </form>
   <ul>
