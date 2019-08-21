@@ -19,7 +19,9 @@
 
 <div class="option-container" *ngIf="showOptions" #optionContainer>
   <form *ngIf="showSearch">
-    <input class="form-control" placeholder="Search">
+    <span class="fa fa-times" *ngIf="searchControl.value !== ''" (click)="clearSearch()"></span>
+    <span class="fa fa-search" *ngIf="searchControl.value === ''"></span>
+    <input class="form-control" placeholder="Search" [formControl]="searchControl">
   </form>
 
     <label *ngIf="options.length > 1;" class="container select-all"><input type="checkbox" [checked]="selectAllToggle" (click)="selectAll()"><span>Select All</span><span class="checkmark check-all"></span></label>

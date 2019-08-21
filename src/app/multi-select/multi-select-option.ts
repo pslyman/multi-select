@@ -1,4 +1,4 @@
 export class MultiSelectOption {
-    label: string;
-    id: string;
+  label: string;
+  id: string | number;
 }

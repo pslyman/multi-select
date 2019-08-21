@@ -24,7 +24,8 @@ export class AppComponent {
     { id: '11', label: 'BMW 2002' }
   ];
   sampleSettings = {
-    closeOnSelect: true
+    closeOnSelect: true,
+    showSearch: true
   };
 
   constructor() {}
@@ -32,5 +33,9 @@ export class AppComponent {
   sampleSingleSelect(options: MultiSelectOption[]) {
     this.samplePrompt = options[0].label;
     this.sampleSingleOption = options[0];
+  }
+
+  sampleSearch(searchTerm: string) {
+    console.log(searchTerm);
   }
 }
