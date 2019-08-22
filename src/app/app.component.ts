@@ -73,14 +73,18 @@ export class AppComponent implements OnInit {
 
   sampleMultiSelect(options: MultiSelectOption[]) {
     const foundProducts = [];
-    options.forEach(opt => {
-      const found = this.allProductInfo.find(prod => prod.sku === opt.id);
-      if (found) {
-        foundProducts.push(found);
+    if (options.length === 0) {
+      this.compareProducts = [];
+    } else {
+      options.forEach(opt => {
+        const found = this.allProductInfo.find(prod => prod.sku === opt.id);
+        if (found) {
+          foundProducts.push(found);
+        }
+      });
+      if (foundProducts.length > 0) {
+        this.compareProducts = foundProducts;
       }
-    });
-    if (foundProducts.length > 0) {
-      this.compareProducts = foundProducts;
     }
   }
 

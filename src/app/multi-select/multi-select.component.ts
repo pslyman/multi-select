@@ -32,7 +32,7 @@ export class MultiSelectComponent implements OnInit {
   constructor() {}
 
   @HostListener('document:click', ['$event', 'optionContainer'])
-  onClick(event: MouseEvent, container) {
+  onClick(event: MouseEvent, container: ElementRef) {
     if (container) {
       const containerElement = container.nativeElement as HTMLElement;
       const clickElement = event.target as HTMLElement;
@@ -70,10 +70,22 @@ export class MultiSelectComponent implements OnInit {
       });
     }
     option.isSelected = !option.isSelected;
-    const selected = this.options.filter(opt => opt.isSelected);
-    this.selectionChange.emit(selected);
+    this.emitSelected();
     if (this.settings && this.settings.closeOnSelect === true) {
       this.showOptions = false;
+    }
+  }
+
+  private emitSelected() {
+    const selected = this.options.filter(opt => opt.isSelected);
+    this.selectionChange.emit(selected);
+  }
+
+  unselectOption(optionId: number | string) {
+    const foundOption = this.options.find(option => option.id === optionId);
+    if (foundOption) {
+      foundOption.isSelected = false;
+      this.emitSelected();
     }
   }
 
