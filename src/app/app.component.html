@@ -1,11 +1,29 @@
 <div class="container">
   <div style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-    </h1>
+    <h1>Welcome to {{ title }}!</h1>
   </div>
-  <app-multi-select [options]="sampleOptions" [settings]="sampleSettings" (searchChange)="sampleSearch($event)"
-    (selectionChange)="sampleSingleSelect($event)" class="default">
-    <button class="btn btn-primary dropdown-toggle">{{samplePrompt}}</button>
-  </app-multi-select>
+  <div class="row">
+    <div class="col">
+      <app-multi-select
+        [options]="sampleOptions"
+        [settings]="sampleSettings"
+        (searchChange)="sampleSearch($event)"
+        (selectionChange)="sampleSingleSelect($event)"
+        class="default"
+      >
+        <button class="btn btn-primary dropdown-toggle">{{ samplePrompt }}</button>
+      </app-multi-select>
+    </div>
+    <div class="col">
+      <app-multi-select
+        [options]="sampleOptions"
+        [settings]="sampleSettings"
+        (searchChange)="sampleSearch($event)"
+        (selectionChange)="sampleSingleSelect($event)"
+        class="default"
+      >
+        <button class="btn btn-primary dropdown-toggle">{{ samplePrompt }}</button>
+      </app-multi-select>
+    </div>
+  </div>
 </div>

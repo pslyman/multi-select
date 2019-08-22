@@ -4,7 +4,7 @@ export class MultiSelectSettings {
   selectMax?: number;
   selectMin?: number;
   closeOnSelect?: boolean;
-  maxHeight?: number;
+  maxScrollHeight?: number;
   maxWidth?: number;
   allowOptionWrap?: boolean;
 }

@@ -28,14 +28,6 @@ export class MultiSelectComponent implements OnInit {
 
   showOptions = false;
   showSearch = false;
-  selectedItems: MultiSelectOption[] = [];
-  selectedItemsString: string = '';
-
-  /* will be imported in */
-  inputNameDefault = "Search"
-  inputName = '';
-  selectAllToggle = false;
-  overflow = false;
 
   constructor() {}
 
@@ -51,64 +43,41 @@ export class MultiSelectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inputName = this.inputNameDefault;
     this.searchControl.setValue('');
     this.showSearch = this.settings && this.settings.showSearch === true;
 
-    if (this.selectedItems.length === this.options.length ) {
-      this.selectAllToggle = true; 
-    }
     const debounceNumber = this.settings && this.settings.searchDelay ? this.settings.searchDelay : 0;
     this.searchControl.valueChanges.pipe(debounceTime(debounceNumber)).subscribe(value => {
       this.searchChange.emit(value);
     });
+
+    if (this.settings && this.settings.maxScrollHeight) {
+      // console.log(this.optionContainer);
+      // this.optionContainer.nativeElement.style.maxHeight = this.settings.maxScrollHeight + 'px';
+    }
   }
 
   contentClick() {
     this.showOptions = !this.showOptions;
-
   }
 
   selectAll() {
-
-    if (this.selectedItems.length == this.options.length) {
-      this.selectedItems = [];
-    } 
-    if (!this.selectAllToggle) {
-      this.selectedItems = this.options;
-    }
-
-    this.chipEmpty(); 
-    this.chipOverflow()
+    // if (this.selectedItems.length == this.options.length) {
+    //   this.selectedItems = [];
+    // }
+    // if (!this.selectAllToggle) {
+    //   this.selectedItems = this.options;
+    // }
   }
 
-  isSelected(option:any) {
-    return this.selectedItems.findIndex((item) => item.id === option.id) > -1 ? true : false;
-   }
-
-  selectOption(option) {
-    this.selectedItems.find((item) => item.id === option.id) ? 
-    this.selectedItems = this.selectedItems.filter((item) => item.id !== option.id) :
-    this.selectedItems.push(option);
-    console.log(this.selectedItems);
-    this.chipEmpty(); 
-    this.chipOverflow()
-  }
-
-
-  deleteSelects(option) {
-    this.selectedItems = this.selectedItems.filter((item) => item.id !== option.id);
-
-    
-
-    if (this.selectedItems.length > 1) {
-      this.inputName = this.inputNameDefault;
-    }
-    this.chipEmpty();
-    this.chipOverflow()
-  }
-    
   updateSelection(option: MultiSelectOption) {
+    if (option.isSelected !== true && this.settings.selectMax === 1) {
+      this.options.forEach(option => {
+        option.isSelected = false;
+      });
+    }
+
+    option.isSelected = !option.isSelected;
     // need multi-select logic here
 
     // this is the single select logic
@@ -119,27 +88,6 @@ export class MultiSelectComponent implements OnInit {
   }
 
   clearSearch() {
-    
     this.searchControl.setValue('');
-
-  }
-
-  chipEmpty() {
-    if (this.selectedItems.length === 0) {  
-      this.inputName = this.inputNameDefault;
-    } 
-    if (this.selectedItems.length !== 0) {
-        this.inputName = '';
-      }
-  }
-
-  chipOverflow() {
-    if (this.selectedItems.length > 4) {
-      this.overflow = true;
-    }
-    if (this.selectedItems.length < 5) {
-      this.overflow = false;
-    }
-    /* Todo: cover this *ngIf emelement tied to this in a chip cover */
   }
 }
