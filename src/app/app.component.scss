@@ -1,0 +1,38 @@
+h5 {
+  line-height: 3rem;
+}
+.carImage {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  padding-top: 65%;
+  margin-top: 1.1rem;
+}
+.compare {
+  border: 1px solid #ccc;
+  font-size: 14px;
+  clear: both;
+  .product {
+    padding: 0.5rem;
+    border-top: 1px solid #ddd;
+    min-height: calc(150px + 1rem);
+    position: relative;
+    padding-left: calc(150px + 1rem);
+    &:first-child {
+      border-top: none;
+    }
+    .image {
+      position: absolute;
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 150px;
+      height: 150px;
+      float: left;
+      left: 0.5rem;
+      top: 0.5rem;
+    }
+    h6 {
+      color: var(--primary);
+    }
+  }
+}

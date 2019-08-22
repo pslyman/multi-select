@@ -4,26 +4,25 @@
   </div>
   <div class="row">
     <div class="col">
-      <app-multi-select
-        [options]="sampleOptions"
-        [settings]="sampleSettings"
-        (searchChange)="sampleSearch($event)"
-        (selectionChange)="sampleSingleSelect($event)"
-        class="default"
-      >
+      <app-multi-select [options]="sampleOptions" [settings]="sampleSettings"
+        (selectionChange)="sampleSingleSelect($event)" class="default">
         <button class="btn btn-primary dropdown-toggle">{{ samplePrompt }}</button>
       </app-multi-select>
+      <div class="carImage" [ngStyle]="{'background-image':'url(' + carImageUrl + ')'}"></div>
     </div>
     <div class="col">
-      <app-multi-select
-        [options]="sampleOptions"
-        [settings]="sampleSettings"
-        (searchChange)="sampleSearch($event)"
-        (selectionChange)="sampleSingleSelect($event)"
-        class="default"
-      >
-        <button class="btn btn-primary dropdown-toggle">{{ samplePrompt }}</button>
+      <app-multi-select [options]="sampleRestApiOptions" [settings]="multiSelectSettings"
+        (searchChange)="sampleSearch($event)" (selectionChange)="sampleMultiSelect($event)" class="default pull-right">
+        <button class="btn btn-light dropdown-toggle">Select Products</button>
       </app-multi-select>
+      <h5>Compare TVs</h5>
+      <div class="compare">
+        <div class="product" *ngFor="let product of compareProducts">
+          <div class="image" [ngStyle]="{'background-image':'url(' + product.image + ')'}"></div>
+          <b>{{product.name}}</b>
+          <h6>${{product.salePrice}}</h6>
+        </div>
+      </div>
     </div>
   </div>
 </div>

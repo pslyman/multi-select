@@ -50,10 +50,10 @@ export class MultiSelectComponent implements OnInit {
     this.searchControl.valueChanges.pipe(debounceTime(debounceNumber)).subscribe(value => {
       this.searchChange.emit(value);
     });
-
     if (this.settings && this.settings.maxScrollHeight) {
-      // console.log(this.optionContainer);
-      // this.optionContainer.nativeElement.style.maxHeight = this.settings.maxScrollHeight + 'px';
+      const parentElement = this.optionContainer.nativeElement as HTMLElement;
+      const scrollElement = parentElement.querySelector('ul') as HTMLElement;
+      scrollElement.style.maxHeight = this.settings.maxScrollHeight + 'px';
     }
   }
 
@@ -61,27 +61,17 @@ export class MultiSelectComponent implements OnInit {
     this.showOptions = !this.showOptions;
   }
 
-  selectAll() {
-    // if (this.selectedItems.length == this.options.length) {
-    //   this.selectedItems = [];
-    // }
-    // if (!this.selectAllToggle) {
-    //   this.selectedItems = this.options;
-    // }
-  }
+  toggleAll() {}
 
   updateSelection(option: MultiSelectOption) {
     if (option.isSelected !== true && this.settings.selectMax === 1) {
-      this.options.forEach(option => {
-        option.isSelected = false;
+      this.options.forEach(thisOpt => {
+        thisOpt.isSelected = false;
       });
     }
-
     option.isSelected = !option.isSelected;
-    // need multi-select logic here
-
-    // this is the single select logic
-    this.selectionChange.emit([option]);
+    const selected = this.options.filter(opt => opt.isSelected);
+    this.selectionChange.emit(selected);
     if (this.settings && this.settings.closeOnSelect === true) {
       this.showOptions = false;
     }
