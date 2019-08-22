@@ -12,9 +12,12 @@
       <span (click)="deleteSelects(item)" class="delete-icon-chip">&#10006;</span>
     </div>
 
-    <input name="option" type="text" placeholder={{inputName}} (click)="contentClick()" [(ngModel)]="selectedItemsString" [ngClass]="(this.selectedItems.length > 4) ? 'float-left' : ''">
+    <input class="select-input" readonly name="option" type="text" placeholder={{inputName}} (click)="contentClick()" [(ngModel)]="selectedItemsString" [ngClass]="(this.selectedItems.length > 1) ? 'select-input-full' : ''">
     </div>
-    <label *ngIf="overflow" class="container-empty"><span>{{ selectedItems[1].label }} and more...</span></label>
+
+    <div class="chips-input-container" *ngIf="overflow">
+    <label class="item-chip many-item-chip"><span>{{ selectedItems[1].label }} and more...</span></label>
+  </div>
 </div>
 
 <div class="option-container" *ngIf="showOptions" #optionContainer>

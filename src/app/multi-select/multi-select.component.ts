@@ -32,7 +32,7 @@ export class MultiSelectComponent implements OnInit {
   selectedItemsString: string = '';
 
   /* will be imported in */
-  inputNameDefault = "Search"
+  inputNameDefault = "Select"
   inputName = '';
   selectAllToggle = false;
   overflow = false;

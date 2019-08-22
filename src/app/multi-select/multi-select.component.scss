@@ -65,7 +65,7 @@ ul {
 .container {
   display: block;
   position: relative;
-  padding: 8px 10px 8px 43px;
+  padding: 8px 10px 16px 43px;
   cursor: pointer;
   font-size: 18px;
   -webkit-user-select: none;
@@ -73,6 +73,7 @@ ul {
   -ms-user-select: none;
   user-select: none;
   width: auto;
+  margin-bottom: 0;
 }
 
 /* if empty  */
@@ -177,6 +178,14 @@ input {
   margin-left: 7px;
 }
 
+.select-input {
+  cursor: pointer;
+}
+
+.select-input-full{
+  width: 0;
+}
+
 .chip-input-items div {
     padding: 10px;
     cursor: pointer;
@@ -196,6 +205,11 @@ input {
   width: 150px;
   text-align: center;
   color: rgb(37, 37, 37);
+}
+
+.many-item-chip {
+  min-width: 205px;
+  margin-bottom: 0;
 }
 
 .delete-icon-chip {
