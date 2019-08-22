@@ -13,8 +13,7 @@
     <div class="col">
       <app-multi-select [options]="sampleRestApiOptions" [settings]="multiSelectSettings"
         (searchChange)="sampleSearch($event)" (selectionChange)="sampleMultiSelect($event)" class="default pull-right">
-        <button class="btn btn-light dropdown-toggle">Select Products</button>
-      </app-multi-select>
+        Select Products </app-multi-select>
       <h5>Compare TVs</h5>
       <div class="compare">
         <div class="product" *ngFor="let product of compareProducts">
