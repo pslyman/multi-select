@@ -15,8 +15,8 @@
     <input class="select-input" readonly name="option" type="text" placeholder={{inputName}} (click)="contentClick()" [(ngModel)]="selectedItemsString" [ngClass]="(this.selectedItems.length > 1) ? 'select-input-full' : ''">
     </div>
 
-    <div class="chips-input-container" *ngIf="overflow">
-    <label class="item-chip many-item-chip"><span>{{ selectedItems[1].label }} and more...</span></label>
+    <div class="chips-input-container" *ngIf="overflow" (click)="contentClick()" >
+    <label class="item-chip many-item-chip"><span>{{ selectedItems[0].label }} and more...</span></label>
   </div>
 </div>
 

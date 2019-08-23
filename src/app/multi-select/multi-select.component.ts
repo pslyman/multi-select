@@ -30,12 +30,16 @@ export class MultiSelectComponent implements OnInit {
   showSearch = false;
   selectedItems: MultiSelectOption[] = [];
   selectedItemsString: string = '';
+  overflow = false;
+  selectAllToggle = false;
 
   /* will be imported in */
   inputNameDefault = "Select"
   inputName = '';
-  selectAllToggle = false;
-  overflow = false;
+  
+  
+  /* To adjust max number of chips */
+  maxCount = 4;
 
   constructor() {}
 
@@ -134,12 +138,11 @@ export class MultiSelectComponent implements OnInit {
   }
 
   chipOverflow() {
-    if (this.selectedItems.length > 4) {
+    if (this.selectedItems.length >= this.maxCount) {
       this.overflow = true;
     }
-    if (this.selectedItems.length < 5) {
+    if (this.selectedItems.length < this.maxCount) {
       this.overflow = false;
     }
-    /* Todo: cover this *ngIf emelement tied to this in a chip cover */
   }
 }
