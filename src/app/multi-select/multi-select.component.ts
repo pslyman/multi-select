@@ -10,14 +10,12 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./multi-select.component.scss']
 })
 export class MultiSelectComponent implements OnInit {
+  /* MultiSelectSettings is piping for later use, potentially to help inject the component with a few options */
   @Input()
   settings: MultiSelectSettings = {};
 
   @Input()
   options: MultiSelectOption[] = [];
-
-  @Output()
-  selectionChange = new EventEmitter<MultiSelectOption[]>();
 
   @Output()
   searchChange = new EventEmitter<string>();
@@ -110,16 +108,6 @@ export class MultiSelectComponent implements OnInit {
     }
     this.chipEmpty();
     this.chipOverflow()
-  }
-    
-  updateSelection(option: MultiSelectOption) {
-    // need multi-select logic here
-
-    // this is the single select logic
-    this.selectionChange.emit([option]);
-    if (this.settings && this.settings.closeOnSelect === true) {
-      this.showOptions = false;
-    }
   }
 
   clearSearch() {
