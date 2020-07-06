@@ -1,5 +1,7 @@
 # MultiSelect
 
+This was part of a small hackathon. Mostly functional multi-select modal. 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
 ## Development server
